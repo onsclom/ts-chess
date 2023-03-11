@@ -22,14 +22,14 @@ const pieceRow = (color: Color, types: PieceType[]): Piece[] =>
   types.map((type, x) => ({ type, color, x, y: color === "white" ? 7 : 0 }));
 
 const kingRowPieceTypes = (color: Color): PieceType[] => [
-    "rook",
-    "knight",
-    "bishop",
-    color === "white" ? "queen" : "king",
-    color === "white" ? "king" : "queen",
-    "bishop",
-    "knight",
-    "rook",
+  "rook",
+  "knight",
+  "bishop",
+  color === "white" ? "queen" : "king",
+  color === "white" ? "king" : "queen",
+  "bishop",
+  "knight",
+  "rook",
 ];
 
 const initWhiteKingRow = pieceRow("white", kingRowPieceTypes("white"));
@@ -93,13 +93,13 @@ type CastlingMove = {
 type PromotionMove =
   | {
       type: "promotion";
-      piece: Piece & { type: "pawn"; white: true };
+      piece: Piece & { type: "pawn"; color: "black" };
       to: [number, 0];
       promoteTo: PieceType;
     }
   | {
       type: "promotion";
-      piece: Piece & { type: "pawn"; white: false };
+      piece: Piece & { type: "pawn"; color: "white" };
       to: [number, 7];
       promoteTo: PieceType;
     };
