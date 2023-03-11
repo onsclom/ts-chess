@@ -21,8 +21,7 @@ const pawnRow = (color: Color): Piece[] =>
 const pieceRow = (color: Color, types: PieceType[]): Piece[] =>
   types.map((type, x) => ({ type, color, x, y: color === "white" ? 7 : 0 }));
 
-const kingRowPieceTypes = (color: Color) =>
-  [
+const kingRowPieceTypes = (color: Color): PieceType[] => [
     "rook",
     "knight",
     "bishop",
@@ -31,7 +30,7 @@ const kingRowPieceTypes = (color: Color) =>
     "bishop",
     "knight",
     "rook",
-  ] as PieceType[];
+];
 
 const initWhiteKingRow = pieceRow("white", kingRowPieceTypes("white"));
 
