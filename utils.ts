@@ -6,29 +6,12 @@ export const ifExists = <T, U>(
   f: (value: T) => U
 ): U | undefined => (value === undefined ? undefined : f(value));
 
-type Test = {
-  description: string;
-  test: any;
-  expected: any;
-};
+export const deepEquals = (a: any, b: any): boolean =>
+  JSON.stringify(a) === JSON.stringify(b);
 
-const allTestsPassed = (tests: Test[]): boolean =>
-  tests.every(({ test, expected }) => test === expected);
-
-const failedTestToText = ({
-  description: name,
-  test,
+export const assert = (description: string, expected, actual) => ({
+  description,
   expected,
-}: Test): string =>
-  `❌ ${name}
-  expected: ${expected}
-  got: ${test}`;
-
-const failedTestsText = (tests: Test[]): string =>
-  tests
-    .filter(({ test, expected }) => test !== expected)
-    .map(failedTestToText)
-    .join("\n");
-
-export const testResultsToString = (tests: Test[]): string =>
-  allTestsPassed(tests) ? "🎉 All tests passed!" : failedTestsText(tests);
+  actual,
+  success: deepEquals(actual, expected),
+});
